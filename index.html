@@ -13,29 +13,20 @@
         <form action="#">
             <label for="route">Выберите направление</label>
             <select name="route" id="route">
-                <option value="A-B">из A в B</option>
-                <option value="B-A">из B в A</option>
-                <option value="A-B-A">из A в B и обратно в А</option>
             </select>
-            <label for="time">Выберите время</label>
-            <select name="time" id="time">
-                <option value="18:00(из A в B)">18:00(из A в B)</option>
-                <option value="18:30(из A в B)">18:30(из A в B)</option>
-                <option value="18:45(из A в B)">18:45(из A в B)</option>
-                <option value="19:00(из A в B)">19:00(из A в B)</option>
-                <option value="19:15(из A в B)">19:15(из A в B)</option>
-                <option value="21:00(из A в B)">21:00(из A в B)</option>
-                <option value="18:30(из B в A)">18:30(из B в A)</option>
-                <option value="18:45(из B в A)">18:45(из B в A)</option>
-                <option value="19:00(из B в A)">19:00(из B в A)</option>
-                <option value="19:15(из B в A)">19:15(из B в A)</option>
-                <option value="19:35(из B в A)">19:35(из B в A)</option>
-                <option value="21:50(из B в A)">21:50(из B в A)</option>
-                <option value="21:55(из B в A)">21:55(из B в A)</option>
-            </select>
+            <fieldset  style="display: none;">
+                <label for="time1">Выберите время</label>
+                <select name="time1" id="time1">
+                </select>
+            </fieldset>
+            <fieldset  style="display: none;">
+                <label for="time2">Выберите время</label>
+                <select name="time2" id="time2">
+                </select>
+            </fieldset>
             <label for="num">Количество билетов</label>
             <input id="num" type="number" min="1" max="500" step="1" value="1">
-            <button id="btn-result">Посчитать</button>
+            <button id="btn-result" disabled>Посчитать</button>
             <label>Итоговая стоимость: <output id="result">0</output> руб.</label>
         </form>
     </main>
