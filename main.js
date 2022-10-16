@@ -70,14 +70,15 @@ function main() {
 
         // событие change: выбор времени в 1-ом select-е
         timeSelect1.addEventListener("change", function(e) {
-            time2 = null;
             timeSelect2.innerHTML = "";
             time1 = stringToDate(this.value);
-            if (currentRoute === 2)
+            if (currentRoute === 2) {
                 setTimeToSelect(1, timeSelect2, element => {
                     let timeOfTimeSelect2 = stringToDate(element);
                     return time1 + TRAVEL_TIME_MINUTES * 60 * 1000 <= timeOfTimeSelect2;
                 });
+                time2 = stringToDate(timeSelect2.value);
+            }
         });
 
         // событие change: выбор времени в 2-ом select-е
@@ -89,8 +90,8 @@ function main() {
         btnResult.addEventListener("click", e => {
             const difference = (currentRoute === 2 ? (new Date(time2).getHours() - new Date(time1).getHours()) * 60 + new Date(time2).getMinutes() - new Date(time1).getMinutes() : 0) + TRAVEL_TIME_MINUTES;
             const arrivalTime = currentRoute === 2 ? new Date(time2).setMinutes(new Date(time2).getMinutes() + TRAVEL_TIME_MINUTES) : new Date(time1).setMinutes(new Date(time1).getMinutes() + TRAVEL_TIME_MINUTES);
-
             const num = Number(numInput.value);
+
             if (((time1 && time2 && currentRoute === 2) || (time1 && currentRoute !== 2)) && num) {
                 let result = `Вы выбрали ${num} билета по маршруту ${ROUTES_VALUE[currentRoute]} стоимостью ${num * PRICE[currentRoute === 2 ? 1 : 0]}р.
 Это путешествие займет у вас ${difference} минут. 
