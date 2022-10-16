@@ -87,13 +87,13 @@ function main() {
 
         
         btnResult.addEventListener("click", e => {
-            const difference = currentRoute === 2 ? time2 - time1 : 0 + TRAVEL_TIME_MINUTES * 60 * 1000;
+            const difference = (currentRoute === 2 ? (new Date(time2).getHours() - new Date(time1).getHours()) * 60 + new Date(time2).getMinutes() - new Date(time1).getMinutes() : 0) + TRAVEL_TIME_MINUTES;
             const arrivalTime = currentRoute === 2 ? new Date(time2).setMinutes(new Date(time2).getMinutes() + TRAVEL_TIME_MINUTES) : new Date(time1).setMinutes(new Date(time1).getMinutes() + TRAVEL_TIME_MINUTES);
 
             const num = Number(numInput.value);
             if (((time1 && time2 && currentRoute === 2) || (time1 && currentRoute !== 2)) && num) {
                 let result = `Вы выбрали ${num} билета по маршруту ${ROUTES_VALUE[currentRoute]} стоимостью ${num * PRICE[currentRoute === 2 ? 1 : 0]}р.
-Это путешествие займет у вас ${new Date(difference).getMinutes()} минут. 
+Это путешествие займет у вас ${difference} минут. 
 Теплоход отправляется в ${dateToString(new Date(time1))}, а прибудет в ${dateToString(new Date(arrivalTime))}.`;
                 output.innerText = result;
             }
